@@ -1,17 +1,17 @@
-/* ======================= Base ======================= */
+/* ======================= BASE STYLES ======================= */
 body, html, #root, .App {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  background: transparent; /* galaxy background shows through */
+  background: transparent;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
   scroll-behavior: smooth;
-  color: #00ffff; /* default text color soft cyan */
+  color: #00ffff;
 }
 
-/* ======================= Galaxy overlay ======================= */
+/* ======================= GALAXY BACKGROUND ======================= */
 .galaxy-container {
   position: fixed;
   inset: 0;
@@ -20,9 +20,9 @@ body, html, #root, .App {
   background-color: rgb(18, 1, 20);
 }
 
-/* ======================= Navbar ======================= */
+/* ======================= NAVBAR ======================= */
 .header {
-  background: rgba(0,0,0,0.2); /* subtle glass effect */
+  background: rgba(0, 0, 0, 0.25);
   position: fixed;
   top: 16px;
   left: 50%;
@@ -31,7 +31,9 @@ body, html, #root, .App {
   width: 90%;
   max-width: 1200px;
   border-radius: 50px;
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px) saturate(150%);
+  -webkit-backdrop-filter: blur(15px) saturate(150%);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.15);
 }
 
 .navbar {
@@ -55,7 +57,7 @@ body, html, #root, .App {
   color: #ff69b4;
 }
 
-/* ======================= Hero ======================= */
+/* ======================= HERO SECTION ======================= */
 .hero {
   position: relative;
   z-index: 5;
@@ -70,8 +72,8 @@ body, html, #root, .App {
   margin: 0 auto;
 }
 
-/* Gradient glow text */
 .hero-title {
+  margin-top: 160px;
   font-size: 3rem;
   font-weight: 900;
   background: linear-gradient(90deg, #00ffff, #8a2be2, #ff69b4);
@@ -87,7 +89,6 @@ body, html, #root, .App {
   text-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
 }
 
-/* Hero buttons */
 .hero-buttons {
   margin-top: 32px;
   display: flex;
@@ -112,7 +113,6 @@ body, html, #root, .App {
   background: linear-gradient(90deg, #ff69b4, #00ffff);
 }
 
-/* Hero stats */
 .hero-stats {
   display: flex;
   justify-content: center;
@@ -128,299 +128,83 @@ body, html, #root, .App {
   font-weight: 700;
 }
 
-/* ======================= Trending Section ======================= */
+/* ======================= CIRCULAR GALLERY SECTION ======================= */
+/* ======================= CIRCULAR GALLERY (TRANSPARENT FLOATING) ======================= */
 .trending-section {
-  padding: 140px 60px 100px 60px; /* Hero remains main focus */
   position: relative;
-  z-index: 3;
-  color: #ffffff;
+  z-index: 8;
+  text-align: center;
+  color: white;
   background: transparent;
-  text-align: left;
+  padding: 120px 0 140px;
+  width: 100%;
+  overflow: hidden;
 }
 
 .trending-title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
+  font-size: 2.6rem;
+  font-weight: 800;
   letter-spacing: 1px;
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+  background: linear-gradient(90deg, #00ffff, #8a2be2, #ff69b4);
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  animation: fadeInGlow 2s ease-in-out infinite alternate;
 }
 
-/* Scroll container */
-.trending-scroll {
-  display: flex;
-  overflow-x: auto;
-  gap: 1.5rem;
-  scroll-behavior: smooth;
-  padding-bottom: 10px;
-  scrollbar-width: none;
-}
-.trending-scroll::-webkit-scrollbar {
-  display: none;
-}
-
-/* Base card */
-.tool-card {
-  flex: 0 0 280px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(0, 255, 255, 0.3);
-  border-radius: 18px;
-  padding: 20px;
-  color: #fff;
-  text-decoration: none;
-  transition: all 0.4s ease;
-  backdrop-filter: blur(12px);
-  cursor: pointer;
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.15);
-  transform-origin: center;
-  position: relative;
-}
-
-.tool-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
-}
-
-/* Focus dimming */
-.tool-card.dimmed {
-  opacity: 0.3;
-  transform: scale(0.95);
-  filter: blur(1px);
-}
-
-/* Expanded card */
-.tool-card.expanded {
-  flex: 0 0 320px;
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 0 35px rgba(0, 255, 255, 0.6);
-  transform: scale(1.08);
-  z-index: 10;
-  animation: expandSmooth 0.4s ease forwards;
-}
-
-@keyframes expandSmooth {
+@keyframes fadeInGlow {
   from {
-    transform: scale(1);
-    opacity: 0.9;
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
   }
   to {
-    transform: scale(1.08);
-    opacity: 1;
+    text-shadow: 0 0 35px rgba(255, 105, 180, 0.6);
   }
 }
 
-/* Icon + Text */
-.tool-icon {
-  font-size: 2.4rem;
-  margin-bottom: 12px;
-  transition: all 0.3s ease;
-}
-
-.tool-name {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-.tool-category {
-  font-size: 0.9rem;
-  color: #8befff;
-  margin-bottom: 8px;
-}
-
-/* Description reveal */
-.tool-description-container {
-  max-height: 0;
+/* Transparent floating gallery */
+.circular-gallery {
+  width: 100%;
+  height: 600px;
   overflow: hidden;
-  opacity: 0;
-  transition: all 0.5s ease-in-out;
+  cursor: grab;
+  position: relative;
+  border-radius: 0 0 80px 80px; /* gentle curve at bottom */
+  background: transparent;      /* fully see-through */
+  z-index: 9;
+  transition: transform 0.4s ease;
 }
 
-.tool-description-container.show {
-  max-height: 300px;
-  opacity: 1;
-  margin-top: 12px;
-  animation: fadeInDesc 0.6s ease forwards;
+.circular-gallery:active {
+  cursor: grabbing;
+  transform: scale(0.99);
 }
 
-@keyframes fadeInDesc {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.circular-gallery canvas {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 0 0 80px 80px;
+  filter: brightness(1.25) contrast(1.15);
+  mix-blend-mode: normal; /* no blend — galaxy shows behind */
 }
 
-.tool-description {
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 14px;
-}
-
-/* Visit Button */
-.visit-btn {
-  display: inline-block;
-  background: linear-gradient(90deg, #00ffff, #b86bff);
-  color: #000;
-  font-weight: 600;
-  text-decoration: none;
-  padding: 8px 14px;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-}
-
-.visit-btn:hover {
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
-  background: linear-gradient(90deg, #ff69b4, #00ffff);
-}
-
-/* Fade-in animation for section */
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 1s forwards;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.no-results {
-  font-size: 1.1rem;
-  opacity: 0.7;
-  margin-top: 20px;
-  text-align: center;
-  width: 100%;
-}
-
-/* ======================= Cards (Categories / General) ======================= */
-.tool-card,
-.trending-item {
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(0, 255, 255, 0.4);
-  border-radius: 16px;
-  padding: 16px;
-  margin: 12px;
-  color: #00ffff;
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
-  transition: all 0.3s ease;
-}
-
-.tool-card:hover,
-.trending-item:hover {
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
-}
-
-/* ======================= Submit Tool Form ======================= */
-.submit-form {
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(0, 255, 255, 0.4);
-  padding: 24px;
-  border-radius: 16px;
-  margin: 32px auto;
-  max-width: 600px;
-  color: #00ffff;
-}
-
-.submit-form input,
-.submit-form select,
-.submit-form textarea {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 16px;
-  border-radius: 8px;
-  border: 1px solid rgba(0, 255, 255, 0.4);
-  background: rgba(0, 0, 0, 0.2);
-  color: #00ffff;
-}
-
-.submit-form input::placeholder,
-.submit-form textarea::placeholder {
-  color: rgba(0, 255, 255, 0.5);
-}
-
-.submit-form button {
-  background: linear-gradient(90deg, #00ffff, #8a2be2);
-  color: black;
-  font-weight: bold;
-  padding: 12px 24px;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.submit-form button:hover {
-  background: linear-gradient(90deg, #ff69b4, #00ffff);
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
-}
-
-/* ======================= Profile / Settings ======================= */
-.profile,
-.settings {
-  margin: 64px auto;
-  padding: 24px;
-  max-width: 700px;
-  background: rgba(0,0,0,0.3);
-  border: 1px solid rgba(0, 255, 255, 0.4);
-  border-radius: 16px;
-  color: #00ffff;
-  box-shadow: 0 0 15px rgba(0,255,255,0.2);
-}
-
-.profile h2,
-.settings h2 {
-  margin-bottom: 16px;
-  text-align: center;
-}
-
-/* ======================= Smooth fade-in animation ======================= */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.fade-in {
-  animation: fadeIn 1.2s ease forwards;
-}
-
-/* ======================= Scrollbar (optional) ======================= */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(0,255,255,0.3);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(0,0,0,0.2);
-}
-/* ========================== ToolModal ======================= */ 
+/* ======================= TOOL MODAL ======================= */
 .modal-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(10px);
-  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 100;
 }
 
 .modal-card {
-  background: rgba(20, 20, 30, 0.9);
+  background: rgba(20, 20, 30, 0.85);
   border: 1px solid rgba(0, 255, 255, 0.2);
   border-radius: 20px;
   padding: 30px;
@@ -478,38 +262,6 @@ body, html, #root, .App {
   margin-bottom: 20px;
 }
 
-.modal-info {
-  margin-bottom: 20px;
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.reviews h3 {
-  margin-bottom: 10px;
-  color: #00ffff;
-  font-size: 1.1rem;
-}
-
-.review-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(0, 255, 255, 0.15);
-  border-radius: 10px;
-  padding: 10px 14px;
-  margin-bottom: 10px;
-}
-
-.review-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 6px;
-  font-weight: 600;
-}
-
-.review-text {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.85);
-}
-
 .modal-buttons {
   margin-top: 20px;
   display: flex;
@@ -545,6 +297,45 @@ body, html, #root, .App {
   background: rgba(0, 255, 255, 0.1);
 }
 
+/* ======================= SUBMIT TOOL FORM ======================= */
+.submit-form {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  padding: 24px;
+  border-radius: 16px;
+  margin: 32px auto;
+  max-width: 600px;
+  color: #00ffff;
+}
+
+.submit-form input,
+.submit-form select,
+.submit-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  background: rgba(0, 0, 0, 0.2);
+  color: #00ffff;
+}
+
+.submit-form button {
+  background: linear-gradient(90deg, #00ffff, #8a2be2);
+  color: black;
+  font-weight: bold;
+  padding: 12px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-form button:hover {
+  background: linear-gradient(90deg, #ff69b4, #00ffff);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+}
+
+/* ======================= ANIMATIONS ======================= */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -555,197 +346,104 @@ body, html, #root, .App {
     transform: translateY(0);
   }
 }
-.trending-section {
-  padding: 140px 60px 100px 60px;
-  position: relative;
-  z-index: 3;
-  color: white;
-  text-align: center;
-  background: transparent;
+
+.fade-in {
+  animation: fadeInUp 1s ease forwards;
 }
 
-.trending-now {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #ff9fff;
-  margin-bottom: 8px;
+/* ======================= SCROLLBAR ======================= */
+::-webkit-scrollbar {
+  width: 8px;
 }
-
-.trending-sub {
-  color: #aaa;
-  margin-bottom: 40px;
+::-webkit-scrollbar-thumb {
+  background: rgba(0,255,255,0.3);
+  border-radius: 4px;
 }
-
-.trending-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 28px;
-  justify-items: center;
+::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.2);
 }
-
-.tool-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(100, 0, 150, 0.25));
-  border: 1px solid rgba(0, 255, 255, 0.25);
-  border-radius: 18px;
-  padding: 20px;
-  width: 270px;
-  color: white;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  backdrop-filter: blur(15px);
-}
-
-.tool-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
-}
-
-.tool-logo {
-  width: 48px;
-  height: 48px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.tool-header {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.tool-tag {
-  background: linear-gradient(90deg, #ff69b4, #b86bff);
-  padding: 4px 10px;
-  border-radius: 10px;
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
-.tool-name {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #fff;
-  margin-top: 6px;
-}
-
-.tool-category {
-  font-size: 0.85rem;
-  color: #7ee6ff;
-  margin-bottom: 10px;
-}
-
-.tool-description {
-  font-size: 0.9rem;
-  opacity: 0.85;
-  margin-bottom: 12px;
-}
-
-.tool-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.9rem;
-}
-
-.rating {
-  color: gold;
-}
-
-.pricing {
-  color: #00ffff;
-}
+/* ======================= CIRCULAR GALLERY (FLOATING TRANSPARENT) ======================= */
 .trending-section {
   position: relative;
-  z-index: 5;
+  z-index: 8; /* above galaxy background */
   text-align: center;
   color: white;
   background: transparent;
-  padding: 100px 0;
+  padding: 120px 0 160px;
+  width: 100%;
+  overflow: hidden;
 }
 
+/* Section Title */
 .trending-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #ff9fff;
-  text-shadow: 0 0 15px rgba(255, 105, 180, 0.4);
-  margin-bottom: 30px;
+  font-size: 2.6rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, #00ffff, #8a2be2, #ff69b4);
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+  margin-bottom: 60px;
+  text-transform: uppercase;
+  animation: fadeInGlow 2s ease-in-out infinite alternate;
 }
 
+@keyframes fadeInGlow {
+  from {
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+  }
+  to {
+    text-shadow: 0 0 35px rgba(255, 105, 180, 0.6);
+  }
+}
+
+/* Floating Gallery Container */
 .circular-gallery {
   width: 100%;
   height: 600px;
   overflow: hidden;
   cursor: grab;
   position: relative;
-  z-index: 10;
+  z-index: 9;
+  border-radius: 0 0 90px 90px; /* subtle bottom arc */
+  background: transparent;
+  transition: transform 1.9s ease;
+  will-change: transform;
 }
 
 .circular-gallery:active {
   cursor: grabbing;
-}
-/* .circular-gallery canvas {
-  position: relative;
-  z-index: 6;
-  width: 100% !important;
-  height: 100% !important;
-} */
- .circular-gallery canvas {
-  filter: blur(10px) saturate(130%);
-  backdrop-filter: blur(25px);
-  mix-blend-mode: lighten;
-}
-.trending {
-  width: 100%;
-  height: 600px;
-  overflow: hidden;
-  cursor: grab;
-  position: relative;
-  z-index: 8; /* stays above galaxy background */
+  transform: scale(0.99);
 }
 
-.trending:active {
-  cursor: grabbing;
-}
-
-.trending canvas {
-  position: relative;
-  z-index: 9;
+/* WebGL Canvas */
+.circular-gallery canvas {
+  position: absolute;
+  inset: 0;
   width: 100% !important;
   height: 100% !important;
-}
-.trending-wrapper {
-  text-align: center;
-  color: white;
-  margin-top: 120px;
+  border-radius: 0 0 90px 90px;
+  filter: none;
+  opacity: 1;
   z-index: 10;
+  background: transparent !important;
+  mix-blend-mode: normal;
 }
 
-.trending-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  background: linear-gradient(90deg, #00ffff, #8a2be2, #ff69b4);
-  -webkit-background-clip: text;
-  color: transparent;
-  text-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
-  margin-bottom: 40px;
+/* Optional glow hover for aesthetic */
+.circular-gallery:hover {
+  transform: scale(1.01);
+  transition: transform 0.4s ease;
 }
 
-.trending-gallery {
-  width: 100%;
-  height: 700px;
-  overflow: hidden;
-  position: relative;
-  cursor: grab;
-  border-radius: 20px;
-  backdrop-filter: blur(15px) saturate(130%);
-}
-
-.trending-gallery canvas {
-  filter: brightness(1.3) contrast(1.1);
-  mix-blend-mode: lighten;
-}
-
-.trending-gallery:active {
-  cursor: grabbing;
+/* Smooth fade-in animation */
+@keyframes fadeInCircular {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }

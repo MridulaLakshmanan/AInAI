@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Galaxy from "./components/galaxy";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import Trending from "./components/Trending";
-import ToolDetail from "./components/ToolDetail";
 import Categories from "./components/Categories";
 import SubmitTool from "./components/SubmitTool";
+import ToolDetail from "./components/ToolDetail";
+import CircularGallery from "./components/CircularGallery";
 import "./App.css";
 
 function App() {
@@ -39,14 +39,14 @@ function App() {
           <Galaxy
             mouseRepulsion={true}
             mouseInteraction={true}
-            repulsionStrength={1.0} // stronger interaction
-            density={2.0} // more particles
+            repulsionStrength={1.0}
+            density={2.0}
             glowIntensity={0.7}
             scrollFactor={scrollFactor}
           />
         </div>
 
-        {/* 🌠 Foreground */}
+        {/* 🌠 Foreground UI */}
         <div style={{ position: "relative", zIndex: 5, pointerEvents: "auto" }}>
           <Navbar />
 
@@ -58,23 +58,28 @@ function App() {
                   {/* 🦋 Hero Section */}
                   <Hero searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
 
-                  {/* 🔥 Trending Section with its own wrapper */}
+                  {/* 💠 Circular Gallery Section (Trending Replacement) */}
                   <section
                     id="trending"
+                    className="trending-section"
                     style={{
-                      position: "relative",
-                      minHeight: "700px",
-                      padding: "100px 0",
-                      marginTop: "150px",
                       display: "flex",
                       flexDirection: "column",
                       alignItems: "center",
                       justifyContent: "center",
-                      overflow: "hidden",
-                      zIndex: 5,
+                      paddingTop: "80px",
                     }}
                   >
-                    <Trending searchQuery={searchQuery} />
+                    <h2 className="trending-title">
+                      🌟 Trending AI Tools
+                    </h2>
+
+                    <CircularGallery
+                      textColor="#ffffff"
+                      borderRadius={0.05}
+                      scrollEase={0.04}
+                      scrollSpeed={2}
+                    />
                   </section>
 
                   {/* 🧭 Other Sections */}
@@ -92,16 +97,5 @@ function App() {
     </Router>
   );
 }
-<section
-  id="trending"
-  style={{
-    position: "relative",
-    minHeight: "700px",
-    marginTop: "120px",
-    zIndex: 5,
-  }}
->
-  <Trending />
-</section>
 
 export default App;
