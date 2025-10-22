@@ -6,7 +6,7 @@ import ToolModal from "./ToolModal";
 export default function CircularGallery({
   bend = 2.8,
   scrollEase = 0.05,
-  autoSpeed = 0.008,
+  autoSpeed = 0.002,
   spacing = 450,
 }) {
   const galleryRef = useRef(null);

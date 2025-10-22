@@ -7,12 +7,15 @@ import Categories from "./components/Categories";
 import SubmitTool from "./components/SubmitTool";
 import ToolDetail from "./components/ToolDetail";
 import CircularGallery from "./components/CircularGallery";
+import CategoryPage from "./components/Categorypage";
+import AllToolsPage from "./components/AllToolsPage"; // ✅ New All Tools Page
 import "./App.css";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [scrollFactor, setScrollFactor] = useState(0);
 
+  // 🌠 Scroll tracking for galaxy parallax
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -51,14 +54,18 @@ function App() {
           <Navbar />
 
           <Routes>
+            {/* 🏠 Home Page */}
             <Route
               path="/"
               element={
                 <>
                   {/* 🦋 Hero Section */}
-                  <Hero searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+                  <Hero
+                    searchQuery={searchQuery}
+                    setSearchQuery={setSearchQuery}
+                  />
 
-                  {/* 💠 Circular Gallery Section (Trending Replacement) */}
+                  {/* 💫 Trending Section */}
                   <section
                     id="trending"
                     className="trending-section"
@@ -70,9 +77,7 @@ function App() {
                       paddingTop: "80px",
                     }}
                   >
-                    <h2 className="trending-title">
-                      🌟 Trending AI Tools
-                    </h2>
+                    <h2 className="trending-title">🌟 Trending AI Tools</h2>
 
                     <CircularGallery
                       textColor="#ffffff"
@@ -82,20 +87,26 @@ function App() {
                     />
                   </section>
 
-                  {/* 🧭 Other Sections */}
+                  {/* 🧭 Categories Section */}
                   <Categories searchQuery={searchQuery} />
-                  <SubmitTool />
+
+                  {/* 🚀 Submit Tool Popup (controlled in Navbar) */}
                 </>
               }
             />
 
-            {/* Tool detail route */}
+            {/* 🔹 Category Dynamic Route */}
+            <Route path="/category/:categoryId" element={<CategoryPage />} />
+
+            {/* 🔹 Tool Detail Page */}
             <Route path="/tool/:toolName" element={<ToolDetail />} />
+
+            {/* 🌌 NEW All Tools Page Route */}
+            <Route path="/all-tools" element={<AllToolsPage />} />
           </Routes>
         </div>
       </div>
     </Router>
-    
   );
 }
 

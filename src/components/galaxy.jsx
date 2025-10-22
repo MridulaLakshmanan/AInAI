@@ -154,7 +154,7 @@ void main() {
 export default function Galaxy({
   focal = [0.5, 0.5],
   rotation = [1.0, 0.0],
-  starSpeed = 0.1,
+  starSpeed = 0.001,
   density = 1,
   disableAnimation = false,
   speed = 1.0,

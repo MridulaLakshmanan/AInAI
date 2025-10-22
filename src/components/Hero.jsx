@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // 🔹 Import navigation hook
 
 const Hero = ({ searchQuery, setSearchQuery }) => {
   const [inputValue, setInputValue] = useState(searchQuery);
   const [suggestions, setSuggestions] = useState([]);
+  const navigate = useNavigate(); // 🔹 Initialize router navigation
 
-  // Local AI tools dataset (you can replace with dynamic API later)
+  // Local AI tools dataset (temporary)
   const aiTools = [
     { name: "ChatGPT", category: "AI Assistant", tag: "Productivity" },
     { name: "Midjourney", category: "Image Generator", tag: "Art & Design" },
@@ -29,7 +31,7 @@ const Hero = ({ searchQuery, setSearchQuery }) => {
             tool.category.toLowerCase().includes(inputValue.toLowerCase()) ||
             tool.tag.toLowerCase().includes(inputValue.toLowerCase())
         );
-        setSuggestions(filtered.slice(0, 5)); // limit 5 suggestions
+        setSuggestions(filtered.slice(0, 5));
       }
     }, 200);
 
@@ -46,7 +48,11 @@ const Hero = ({ searchQuery, setSearchQuery }) => {
       </p>
 
       {/* Search Bar */}
-      <form onSubmit={handleSearch} className="hero-search" style={{ marginTop: "32px", position: "relative" }}>
+      <form
+        onSubmit={handleSearch}
+        className="hero-search"
+        style={{ marginTop: "32px", position: "relative" }}
+      >
         <input
           type="text"
           placeholder="🔍 Search AI Tools..."
@@ -66,8 +72,12 @@ const Hero = ({ searchQuery, setSearchQuery }) => {
             boxShadow: "0 0 10px rgba(0,255,255,0.3)",
             transition: "all 0.3s ease",
           }}
-          onFocus={(e) => (e.target.style.boxShadow = "0 0 20px rgba(0,255,255,0.6)")}
-          onBlur={(e) => (e.target.style.boxShadow = "0 0 10px rgba(0,255,255,0.3)")}
+          onFocus={(e) =>
+            (e.target.style.boxShadow = "0 0 20px rgba(0,255,255,0.6)")
+          }
+          onBlur={(e) =>
+            (e.target.style.boxShadow = "0 0 10px rgba(0,255,255,0.3)")
+          }
         />
 
         {/* Suggestions Dropdown */}
@@ -102,15 +112,51 @@ const Hero = ({ searchQuery, setSearchQuery }) => {
                   textAlign: "center",
                   transition: "all 0.3s ease",
                 }}
-                onMouseEnter={(e) => (e.target.style.background = "rgba(255,255,255,0.1)")}
-                onMouseLeave={(e) => (e.target.style.background = "transparent")}
+                onMouseEnter={(e) =>
+                  (e.target.style.background = "rgba(255,255,255,0.1)")
+                }
+                onMouseLeave={(e) =>
+                  (e.target.style.background = "transparent")
+                }
               >
-                {tool.name} <span style={{ color: "#ff69b4", fontSize: "13px" }}>({tool.category})</span>
+                {tool.name}{" "}
+                <span style={{ color: "#ff69b4", fontSize: "13px" }}>
+                  ({tool.category})
+                </span>
               </div>
             ))}
           </div>
         )}
       </form>
+
+      {/* 🚀 Explore Tools Button */}
+      <button
+        onClick={() => navigate("/all-tools")}
+        style={{
+          marginTop: "40px",
+          padding: "12px 28px",
+          borderRadius: "30px",
+          border: "1px solid rgba(0,255,255,0.4)",
+          background: "rgba(255,255,255,0.08)",
+          color: "white",
+          fontSize: "16px",
+          fontWeight: 500,
+          cursor: "pointer",
+          transition: "all 0.3s ease",
+          boxShadow: "0 0 15px rgba(0,255,255,0.3)",
+          textTransform: "uppercase",
+        }}
+        onMouseEnter={(e) =>
+          (e.currentTarget.style.boxShadow =
+            "0 0 25px rgba(0,255,255,0.6), 0 0 50px rgba(170,0,255,0.4)")
+        }
+        onMouseLeave={(e) =>
+          (e.currentTarget.style.boxShadow =
+            "0 0 15px rgba(0,255,255,0.3)")
+        }
+      >
+        🚀 Explore Tools
+      </button>
     </section>
   );
 };
